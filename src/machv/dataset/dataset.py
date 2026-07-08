@@ -1,13 +1,27 @@
 import numpy as np
+from tabulate import tabulate
+
+# formato: [nombre, tipo1, tipo2, hp, attack, defense, sp_atk, sp_def, speed, legendary]
 
 class Dataset:
-    def __init__(self, X, y, names):
+    def __init__(self, X, y, names, nameY):
         self.X = np.array(X)
         self.y = np.array(y)
         if len(names) != self.X.shape[1]:
             raise ValueError("Names length and the number of columns of the table aren't the same.")
         else:
             self.names = names
+
+        self.nameY = nameY
+
+    def __len__(self):
+        return self.X.shape[0]
+
+    def __str__(self):
+        y = self.y
+        y = y.reshape(-1, 1)
+        return tabulate(np.concatenate((self.X, y), axis = 1), headers=self.names + [self.nameY],  tablefmt="fancy_grid")
+        
 
     @property
     def X(self):
@@ -26,5 +40,3 @@ class Dataset:
     @y.setter
     def y(self, value):
         self._y = value 
-
-
