@@ -21,6 +21,9 @@ class Dataset:
         y = self.y
         y = y.reshape(-1, 1)
         return tabulate(np.concatenate((self.X, y), axis = 1), headers=self.names + [self.nameY],  tablefmt="fancy_grid")
+
+    def n_attr(self):
+        return self.X.shape[1]
         
 
     @property
@@ -40,3 +43,19 @@ class Dataset:
     @y.setter
     def y(self, value):
         self._y = value 
+
+    @property
+    def names(self):
+        return self._names
+
+    @names.setter
+    def names(self, value):
+        self._names = value
+
+    @property
+    def nameY(self):
+        return self._nameY
+
+    @nameY.setter
+    def nameY(self, value):
+        self._nameY = value

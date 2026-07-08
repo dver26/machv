@@ -32,8 +32,12 @@ names = ["nombre", "tipo1", "tipo2", "hp", "attack", "defense", "sp_atk", "sp_de
 
 X = np.array(pokemons)[:, 1:-1]
 y = np.array(pokemons)[:, -1]
-print(X)
 
 d = Dataset(X, y, names[1:-1], names[-1])
 print(d)
 
+# Característiques del dataset
+print("Característiques del dataset")
+print("Nombre de mostres: ", len(d))
+print("Nombre de característiques: ", d.n_attr())
+print("Noms de les característiques: ", d.names)
